@@ -12,6 +12,8 @@ import choose_strongest_group from './JS-files/choose_one_strongest_group.js';
 //const members=["Allan","Andrija","Ann","Carlos","Egle","Felix","Fin","Gerald","Haakim","Marco","Paul","Uche","Vonn","Wais","Wojtek"];
 //const test = ['test']
 
+
+
 const app = express();
 
 dotenv.config();
@@ -95,3 +97,34 @@ app.listen(port, (err)=>{
     
     } else console.log('Server listening on port, ',port);
 });
+
+
+/**  FETCH WER TEST **************************************** */
+
+const fetchWer = async () => {
+
+    try {
+        const res = await fetch('https://weronique.onrender.com');
+        log.success = res.ok;    
+    } catch (error) {
+        log.success = "fail";
+    }
+
+
+    const time =  new Intl.DateTimeFormat('pl', 
+    { weekday:'long',
+    month: 'numeric',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric' }).format(new Date());
+
+    log.time = time;
+
+    fs.appendFile('logs.txt', JSON.stringify(log)+'\n', function (err) {
+    if (err) console.log(err);
+    console.log('Fetch log saved!', log.time);
+  });
+    
+}
+
+setInterval(fetchWer, 1000*60*14);
