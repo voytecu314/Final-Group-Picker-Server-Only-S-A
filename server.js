@@ -101,4 +101,4 @@ app.listen(port, (err)=>{
 
 /**  FETCH WER TEST **************************************** */
 
-setInterval(()=>fetch('https://weronique.onrender.com'), 1000*60*14);
+setInterval(()=>fetch('https://weronique.onrender.com').catch(console.log), 1000*60*14);
