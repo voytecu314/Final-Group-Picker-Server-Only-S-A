@@ -101,30 +101,4 @@ app.listen(port, (err)=>{
 
 /**  FETCH WER TEST **************************************** */
 
-const fetchWer = async () => {
-
-    try {
-        const res = await fetch('https://weronique.onrender.com');
-        log.success = res.ok;    
-    } catch (error) {
-        log.success = "fail";
-    }
-
-
-    const time =  new Intl.DateTimeFormat('pl', 
-    { weekday:'long',
-    month: 'numeric',
-    day: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric' }).format(new Date());
-
-    log.time = time;
-
-    fs.appendFile('logs.txt', JSON.stringify(log)+'\n', function (err) {
-    if (err) console.log(err);
-    console.log('Fetch log saved!', log.time);
-  });
-    
-}
-
-setInterval(fetchWer, 1000*60*14);
+setInterval(()=>fetch('https://weronique.onrender.com'), 1000*60*14);
