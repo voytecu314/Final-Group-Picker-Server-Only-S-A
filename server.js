@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import logger from 'morgan';
+import fetch from 'node-fetch';
 
 import { auth, adminAuth } from './pass-encryption/passENC.js';
 import countConnections from './JS-files/choices-connections.js';
